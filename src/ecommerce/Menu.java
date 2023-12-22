@@ -2,13 +2,29 @@ package ecommerce;
 
 import java.util.Scanner;
 
+import ecommerce.acesso.Materiais;
+import ecommerce.controller.CompraMateriais;
+
 public class Menu {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner leia = new Scanner(System.in);
 
-		int opcao, opcaoCliente, opcaoAdm;
+		int opcao, opcaoCliente, opcaoAdm, codigoProd, qtd;
+		CompraMateriais listaProdutos = new CompraMateriais();
+		CompraMateriais carrinho = new CompraMateriais();
+		Materiais mat1 = new Materiais("Cenoura", listaProdutos.gerarCodigo(), 20.00f);
+		listaProdutos.cadastrar(mat1);
+		Materiais mat2 = new Materiais("Beterraba", listaProdutos.gerarCodigo(), 40.00f);
+		listaProdutos.cadastrar(mat2);
+		Materiais mat3 = new Materiais("Tomate", listaProdutos.gerarCodigo(), 13.00f);
+		listaProdutos.cadastrar(mat3);
+		Materiais mat4 = new Materiais("Abobrinha", listaProdutos.gerarCodigo(), 6.00f);
+		listaProdutos.cadastrar(mat4);
+
+
+		
 
 		while (true) {
 
@@ -63,10 +79,22 @@ public class Menu {
 						break;
 					case 2:
 						System.out.println("Listar materiais disponíveis\n\n");
+						listaProdutos.listarTodas();
 
 						break;
 					case 3:
 						System.out.println("Adicionar Material ao Carrinho\n\n");
+						System.out.println("\nPor favor informe o código de qual material deseja adicionar: ");
+						listaProdutos.visualizacaosimples();
+						codigoProd = leia.nextInt();
+						
+						System.out.println("Agora informe a quantidade que deseja");
+						qtd = leia.nextInt();
+						
+						carrinho.cadastrar(listaProdutos.buscarNaCollection(codigoProd));
+						carrinho.setQuantidade(qtd);;
+						
+						carrinho.visualizacaosimples();								
 
 						break;
 					case 4:
