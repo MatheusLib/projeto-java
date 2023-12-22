@@ -52,17 +52,19 @@ public class CompraMateriais implements ManipulacaoMaterial {
 		System.out.println("Material " + material.getNome() + " adicionado com sucesso!");
 	}
 
-	@Override
-	public void atualizar() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
-	public void deletar() {
+	public void deletar(int codigo) {
 		// TODO Auto-generated method stub
-
-	}
+		var material = buscarNaCollection(codigo);
+		if (material != null) {
+			if(Carrinho.remove(material)==true) {
+				System.out.println("\nMaterial "+material.getNome()+" removido do carrinho com sucesso");
+			}
+		}
+		else
+			System.out.println("Material não encontrado");
+		}
 
 	public void valorDaCompra() {
 
@@ -89,8 +91,13 @@ public class CompraMateriais implements ManipulacaoMaterial {
 	public int gerarCodigo() {
 		return ++codigo;
 	}	
-	public void addCarrinho() {
+	
+	public void addCarrinho(Materiais material, int quantidade) {
+		this.cadastrar(material);
+		this.setQuantidade(quantidade);
 		
+		System.out.println(this.getQuantidade()+" materiais adicionados");
 	}
+
 
 }

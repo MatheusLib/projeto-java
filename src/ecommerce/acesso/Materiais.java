@@ -14,7 +14,6 @@ public class Materiais {
 		this.valor = valor;
 	}
 
-	
 	public Materiais(String nome, int codigo, float valor, int quantidade) {
 		super();
 		this.nome = nome;
@@ -65,6 +64,19 @@ public class Materiais {
 		this.valor = valor;
 	}
 
+	/**
+	 * @return the quantidade
+	 */
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	/**
+	 * @param quantidade the quantidade to set
+	 */
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	public void visualizar() {
 		System.out.println("\n*****************************************************");
@@ -73,10 +85,9 @@ public class Materiais {
 		System.out.println("\n Preço: R$" + this.valor);
 
 	}
+
 	public void visuSimples() {
-		System.out.println(" Material: " + this.nome+"\tCódigo do Material: "+ this.codigo+ "\tPreço: R$" + this.valor);
-		if (quantidade >= 0)
-			System.out.println("Quantidade: "+quantidade);
+		System.out.println(" Material: " + this.nome + "\tCódigo do Material: " + this.codigo + "\tPreço: R$" + this.valor);
 	}
 
 }

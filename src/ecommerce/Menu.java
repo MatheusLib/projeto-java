@@ -1,5 +1,6 @@
 package ecommerce;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import ecommerce.acesso.Materiais;
@@ -37,8 +38,14 @@ public class Menu {
 			System.out.println("\t9 - Sair");
 			System.out.println("\n*****************************************************");
 			System.out.println("\nEntre com a opção desejada: \n");
-
+			
+			try {
 			opcao = leia.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("\nDigite valores inteiros!");
+				leia.nextLine();
+				opcao = 0;
+			}
 
 			if (opcao == 9) {
 				System.out.println("\nObrigado por comparecer!");
@@ -91,18 +98,20 @@ public class Menu {
 						System.out.println("Agora informe a quantidade que deseja");
 						qtd = leia.nextInt();
 						
-						carrinho.cadastrar(listaProdutos.buscarNaCollection(codigoProd));
-						carrinho.setQuantidade(qtd);;
-						
-						carrinho.visualizacaosimples();								
+						carrinho.addCarrinho(listaProdutos.buscarNaCollection(codigoProd), qtd);
 
 						break;
 					case 4:
 						System.out.println("Retirar Material do Carrinho\n\n");
+						System.out.println("\nPor favor informe o código de qual material deseja remover: ");
+						codigoProd = leia.nextInt();
+						
+						carrinho.deletar(codigoProd);
 
 						break;
 					case 5:
 						System.out.println("Visualizar o Carrinho\n\n");
+						carrinho.listarTodas();
 
 						break;
 					default:
@@ -111,7 +120,12 @@ public class Menu {
 					}
 				}
 			case 2:
-				System.out.println("entre com os dados da conta adminstradora: ");
+				System.out.println("Você não tem permissão para esse tipo de acesso!");
+				sobre();
+				leia.close();
+				System.exit(0);
+				
+				/*
 				if (leia.nextInt() == 1) {
 
 					while (true) {
@@ -168,7 +182,10 @@ public class Menu {
 			default:
 				System.out.println("\nOpção Inválida!\n");
 				break;
+						*/
+
 			}
+			
 		}
 	}
 

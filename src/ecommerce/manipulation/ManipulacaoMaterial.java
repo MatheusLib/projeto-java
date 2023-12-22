@@ -7,8 +7,7 @@ public interface ManipulacaoMaterial {
 	// CRUD das contas e do carrinho
 	public void procurarPorCodigo(int codigo);
 	public void listarTodas();
-	public void atualizar();
-	public void deletar();
-	void cadastrar(Materiais material);	
+	public void deletar(int codigo);
+	void cadastrar(Materiais material);
 	
 }
