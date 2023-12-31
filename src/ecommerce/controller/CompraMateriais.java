@@ -92,12 +92,17 @@ public class CompraMateriais implements ManipulacaoMaterial {
 		return ++codigo;
 	}	
 	
-	public void addCarrinho(Materiais material, int quantidade) {
-		this.cadastrar(material);
-		this.setQuantidade(quantidade);
+	public void contaTotal () {
+		float total=0;
 		
-		System.out.println(this.getQuantidade()+" materiais adicionados");
+		for (var materiais : Carrinho) {
+			total += (materiais.getValor()*materiais.getQuantidade());
+		}
+		System.out.println("\n*****************************************************");
+
+		System.out.println("\nO valor da sua conta é de: R$"+total);
 	}
+	
 
 
 }

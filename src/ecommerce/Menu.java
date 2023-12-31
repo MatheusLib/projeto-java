@@ -1,6 +1,7 @@
 package ecommerce;
 
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import ecommerce.acesso.Materiais;
@@ -23,8 +24,6 @@ public class Menu {
 		listaProdutos.cadastrar(mat3);
 		Materiais mat4 = new Materiais("Abobrinha", listaProdutos.gerarCodigo(), 6.00f);
 		listaProdutos.cadastrar(mat4);
-
-
 		
 
 		while (true) {
@@ -98,7 +97,9 @@ public class Menu {
 						System.out.println("Agora informe a quantidade que deseja");
 						qtd = leia.nextInt();
 						
-						carrinho.addCarrinho(listaProdutos.buscarNaCollection(codigoProd), qtd);
+						var teste =listaProdutos.buscarNaCollection(codigoProd);
+												
+						carrinho.cadastrar(new Materiais(teste.getNome(), teste.getCodigo(), teste.getValor(), qtd));
 
 						break;
 					case 4:
@@ -112,6 +113,7 @@ public class Menu {
 					case 5:
 						System.out.println("Visualizar o Carrinho\n\n");
 						carrinho.listarTodas();
+						carrinho.contaTotal();
 
 						break;
 					default:

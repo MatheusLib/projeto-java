@@ -83,6 +83,8 @@ public class Materiais {
 		System.out.println("\n Material: " + this.nome);
 		System.out.println("\n Código do Material: " + this.codigo);
 		System.out.println("\n Preço: R$" + this.valor);
+		if (quantidade > 0) 
+		System.out.println("\n Quantidade: " + this.quantidade+" UN");
 
 	}
 
